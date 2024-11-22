@@ -40,14 +40,18 @@ def chiffres_autour(lignes,coord):
                 chiffres.append([i+1,j+1])
     return chiffres 
 
-def suppression_double_chiffre(next_numbers):
+def suppression_double_chiffre(next_numbers,coord_etoile):
     result = [next_numbers[0]]
     i = next_numbers[0][0]
     j = next_numbers[0][1]
     for k in range(1,len(next_numbers)):
         if next_numbers[k][0] == i: #pas de changement de ligne
-            if next_numbers[k][1] != j+1: #decalage de j de + de 1 case
-                 result.append(next_numbers[k])
+            if coord_etoile[0] == i:
+                result.append(next_numbers[k])
+            #decalage de j de + de 1 case ET case d'avant pas dans next_numbers
+            elif next_numbers[k][1] != j+1 and [i,next_numbers[k][1]-1] not in next_numbers:
+                result.append(next_numbers[k])
+                j = next_numbers[k][1]
         else:
             i = next_numbers[k][0]
             j = next_numbers[k][1]
@@ -81,18 +85,17 @@ def recherche_gears(lignes):
         while j < len(lignes[0]):
             if lignes[i][j] == '*':
                 product = 1
-                next_numbers = chiffres_autour(lignes,[i,j])
-                uniq_numbers = suppression_double_chiffre(next_numbers)
-                if len(uniq_numbers) >= 2: #au - 2 nombres autour
+                near_numbers = chiffres_autour(lignes,[i,j])
+                uniq_numbers = suppression_double_chiffre(near_numbers,[i,j])
+                if len(uniq_numbers) >= 2: #2 nombres autour
                     for coord_chiffre in uniq_numbers:
                         nombre_coords = presence_autres_chiffres(lignes,coord_chiffre[0],coord_chiffre[1])
                         nombre_entier = transformation_tabcoord_nombre(lignes,nombre_coords)
-                        product *= nombre_entier
+                        print(nombre_entier)
+                        product = product * nombre_entier
                 if product != 1:
                     somme += product
-                    j += 1
-                else:
-                    j += 1
+            j += 1
     return somme
 
 
