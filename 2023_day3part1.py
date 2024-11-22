@@ -15,28 +15,28 @@ def symboles_autour(lignes,coordonnees): #NON FINI
         i = coord[0]
         j = coord[1]
         if j > 0:
-            if lignes[i,j-1] not in ['.','0','1','2','3','4','5','6','7','8','9']:
+            if lignes[i][j-1] not in ['.','0','1','2','3','4','5','6','7','8','9']:
                     symboles = True
         if j < len(lignes[0])-1:
-            if lignes[i,j+1] not in ['.','0','1','2','3','4','5','6','7','8','9']:
+            if lignes[i][j+1] not in ['.','0','1','2','3','4','5','6','7','8','9']:
                     symboles = True
         if i > 0:
-            if lignes[i-1,j] not in ['.','0','1','2','3','4','5','6','7','8','9']:
+            if lignes[i-1][j] not in ['.','0','1','2','3','4','5','6','7','8','9']:
                     symboles = True
             if j > 0:
-                if lignes[i-1,j-1] not in ['.','0','1','2','3','4','5','6','7','8','9']:
+                if lignes[i-1][j-1] not in ['.','0','1','2','3','4','5','6','7','8','9']:
                     symboles = True
             if j < len(lignes[0]) -1:
-                if lignes[i-1,j+1] not in ['.','0','1','2','3','4','5','6','7','8','9']:
+                if lignes[i-1][j+1] not in ['.','0','1','2','3','4','5','6','7','8','9']:
                     symboles = True
         if i < len(lignes)-1:
-            if lignes[i+1,j] not in ['.','0','1','2','3','4','5','6','7','8','9']:
+            if lignes[i+1][j] not in ['.','0','1','2','3','4','5','6','7','8','9']:
                     symboles = True
             if j > 0:
-                if lignes[i+1,j-1] not in ['.','0','1','2','3','4','5','6','7','8','9']:
+                if lignes[i+1][j-1] not in ['.','0','1','2','3','4','5','6','7','8','9']:
                     symboles = True
             if j < len(lignes[0]) -1:
-                if lignes[i+1,j+1] not in ['.','0','1','2','3','4','5','6','7','8','9']:
+                if lignes[i+1][j+1] not in ['.','0','1','2','3','4','5','6','7','8','9']:
                     symboles = True
     return symboles
             
@@ -51,14 +51,21 @@ def presence_autres_chiffres(lignes,i,j): #FAIT
 def somme_part_numbers(lignes): #FAIT
     somme = 0
     for i in range (len(lignes)):
-        for j in range (len(lignes[0])):
+        j = 0
+        while j < len(lignes[0]):
             if lignes[i][j] in ['0','1','2','3','4','5','6','7','8','9']:
                 coord_chiffres = presence_autres_chiffres(lignes,i,j)
                 if symboles_autour(lignes,coord_chiffres):
-                    nombre = ''
+                    nombre = 0
+                    decrem = len(coord_chiffres)-1
                     for coord in coord_chiffres:
-                        nombre.append(lignes[coord[0]][coord[1]])
-                    nombre = int(nombre)
+                        nombre += int(lignes[coord[0]][coord[1]])*10**decrem
+                        decrem -= 1
+                    print(nombre)
                     somme += nombre
+                j += len(coord_chiffres)
+            else:
+                j += 1
     return somme
     
+print(somme_part_numbers(lignes))
