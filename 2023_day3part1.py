@@ -6,7 +6,7 @@ for i in range (len(lignes)):
     lignes[i] = lignes[i][:-1]
 
 
-def symboles_autour(lignes,coordonnees): #NON FINI
+def symboles_autour(lignes,coordonnees):
     '''
     :coordonnees: [[x,y],[x,y]...]
     '''
@@ -41,14 +41,14 @@ def symboles_autour(lignes,coordonnees): #NON FINI
     return symboles
             
 
-def presence_autres_chiffres(lignes,i,j): #FAIT
+def presence_autres_chiffres(lignes,i,j):
     reponse = []
     while j < len(lignes[0]) and lignes[i][j] in ['0','1','2','3','4','5','6','7','8','9']:
         reponse.append([i,j])
         j += 1
     return reponse
 
-def somme_part_numbers(lignes): #FAIT
+def somme_part_numbers(lignes):
     somme = 0
     for i in range (len(lignes)):
         j = 0
