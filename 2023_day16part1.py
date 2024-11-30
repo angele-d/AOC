@@ -7,10 +7,10 @@ for i in range (len(lignes)):
 
 transformation_tableau = [[]] * len(lignes)
 for i in range (len(lignes)):
-    for j in range (len(lignes[0])): #PROBLEME
-        transformation_tableau[i].append(lignes[i][j])
+    transformation_tableau[i] = ['.'] * len(lignes[i])
+    for j in range (len(lignes[i])):
+        transformation_tableau[i][j] = lignes[i][j]
 
-print(transformation_tableau)
 
 def next_step_H(grille,x,y):
     '''
@@ -135,6 +135,14 @@ def est_valide(grille, elt, nb_parcours):
             return True
     return True
 
+def calcul_energized(nb_parcours):
+    nb_energized = 0
+    for i in range (len(nb_parcours)):
+        for j in range (len(nb_parcours[i])):
+            if nb_parcours[i][j] > 0:
+                nb_energized += 1
+    return nb_energized
+
 def parcours(grille, coords):
     file_parcours = [coords]
     nb_parcours = tabxtab_de_0(grille)
@@ -171,7 +179,8 @@ def parcours(grille, coords):
                         file_parcours.append((elt[0],elt[1]))
             case _:
                 print("Probleme")
-    return grille
+    nb_energized = calcul_energized(nb_parcours)
+    return nb_energized
 
 def main_function(grille):
     '''
@@ -195,5 +204,10 @@ def main_function(grille):
         case _:
             print("Probleme vers initialisation")
             return grille 
+        
+        
 
-#print(main_function(lignes))
+
+result = (main_function(transformation_tableau))
+for i in range (len(result)):
+    print(result[i])
