@@ -44,6 +44,8 @@ def creer_tab_vide():
 def boucle_possible(pos_guard,direction_guard,dico_diese,acc):
     match direction_guard:
         case ">":
+            if (pos_guard[0],pos_guard[1]+1) == init_guard or not est_dans_tableau((pos_guard[0],pos_guard[1]+1)):
+                return 0
             if est_dans_tableau((pos_guard[0]+2,pos_guard[1])):
                 diese_ligne = 0
                 for i in range (pos_guard[0]+2,len(lignes)):
@@ -53,6 +55,8 @@ def boucle_possible(pos_guard,direction_guard,dico_diese,acc):
             else:
                 return 0
         case "<":
+            if (pos_guard[0],pos_guard[1]-1) == init_guard or not est_dans_tableau((pos_guard[0],pos_guard[1]-1)):
+                return 0
             if est_dans_tableau((pos_guard[0]-2,pos_guard[1])):
                 diese_ligne = 0
                 for i in range (0,pos_guard[0]-1):
@@ -62,6 +66,8 @@ def boucle_possible(pos_guard,direction_guard,dico_diese,acc):
             else:
                 return 0
         case "^":
+            if (pos_guard[0]-1,pos_guard[1]) == init_guard or not est_dans_tableau((pos_guard[0]-1,pos_guard[1])):
+                return 0
             if est_dans_tableau((pos_guard[0],pos_guard[1]+2)):
                 diese_ligne = 0
                 for j in range (pos_guard[1]+2,len(lignes[pos_guard[0]])):
@@ -71,6 +77,8 @@ def boucle_possible(pos_guard,direction_guard,dico_diese,acc):
             else:
                 return 0
         case "v":
+            if (pos_guard[0]+1,pos_guard[1]) == init_guard or not est_dans_tableau((pos_guard[0]+1,pos_guard[1])):
+                return 0
             if est_dans_tableau((pos_guard[0],pos_guard[1]-2)):
                 diese_ligne = 0
                 for j in range (0,pos_guard[1]-1):
@@ -82,15 +90,13 @@ def boucle_possible(pos_guard,direction_guard,dico_diese,acc):
         case _:
             print("Pb deja_vu_droite")
 
+
 def moove(pos_guard,direction_guard,dico_diese, acc = creer_tab_vide()):
     pos_init = pos_guard
     if not est_dans_tableau(pos_guard):
-        for i in range (len(acc)):
-            print(acc[i])
         return 0
     else:
         if boucle_possible(pos_guard,direction_guard,dico_diese,acc):
-            print(pos_guard)
             score = 1
         else:
             score = 0
@@ -100,7 +106,8 @@ def moove(pos_guard,direction_guard,dico_diese, acc = creer_tab_vide()):
                 if next == None: #tout droit
                     pos_guard = (pos_guard[0],pos_guard[1]+1)
                 else: #diese ensuite 
-                    pos_guard = (pos_guard[0]+1,pos_guard[1])
+                    pos_guard = (pos_guard[0],pos_guard[1])
+                    score = 0
                     direction_guard = "v"
                 acc[pos_init[0]][pos_init[1]] = direction_guard
                 return score + moove(pos_guard,direction_guard,dico_diese,acc)
@@ -109,7 +116,8 @@ def moove(pos_guard,direction_guard,dico_diese, acc = creer_tab_vide()):
                 if next == None: #tout droit
                     pos_guard = (pos_guard[0],pos_guard[1]-1)
                 else: #diese ensuite 
-                    pos_guard = (pos_guard[0]-1,pos_guard[1])
+                    pos_guard = (pos_guard[0],pos_guard[1])
+                    score = 0
                     direction_guard = "^"
                 acc[pos_init[0]][pos_init[1]] = direction_guard
                 return score + moove(pos_guard,direction_guard,dico_diese,acc)
@@ -118,7 +126,8 @@ def moove(pos_guard,direction_guard,dico_diese, acc = creer_tab_vide()):
                 if next == None: #tout droit
                     pos_guard = (pos_guard[0]-1,pos_guard[1])
                 else: #diese ensuite 
-                    pos_guard = (pos_guard[0],pos_guard[1]+1)
+                    pos_guard = (pos_guard[0],pos_guard[1])
+                    score = 0
                     direction_guard = ">"
                 acc[pos_init[0]][pos_init[1]] = direction_guard
                 return score + moove(pos_guard,direction_guard,dico_diese,acc)
@@ -127,7 +136,8 @@ def moove(pos_guard,direction_guard,dico_diese, acc = creer_tab_vide()):
                 if next == None: #tout droit
                     pos_guard = (pos_guard[0]+1,pos_guard[1])
                 else: #diese ensuite 
-                    pos_guard = (pos_guard[0],pos_guard[1]-1)
+                    pos_guard = (pos_guard[0],pos_guard[1])
+                    score = 0
                     direction_guard = "<"
                 acc[pos_init[0]][pos_init[1]] = direction_guard
                 return score + moove(pos_guard,direction_guard,dico_diese,acc)
@@ -135,9 +145,11 @@ def moove(pos_guard,direction_guard,dico_diese, acc = creer_tab_vide()):
                 print("Pb moove")
 
 def init_search(lignes):
-    pos_guard = find_guard(lignes)
-    direction_guard = lignes[pos_guard[0]][pos_guard[1]]
+    global init_guard
+    init_guard = find_guard(lignes)
+    direction_guard = lignes[init_guard[0]][init_guard[1]]
     dico_diese = dico_hashtag(lignes)
-    return moove(pos_guard,direction_guard,dico_diese)
+    return moove(init_guard,direction_guard,dico_diese)
+
 
 print(init_search(lignes))
