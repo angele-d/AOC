@@ -22,7 +22,7 @@ int move_left(int number, int value){
 
 void part1(){
     fstream file;
-    file.open("datas/aoc2025_day1_data");
+    file.open("datas/2025_day1_data");
     string line;
     int password = 50;
     int count0 = 0;
