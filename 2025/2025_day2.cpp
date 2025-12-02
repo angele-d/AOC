@@ -64,6 +64,31 @@ unsigned long long find_sequence_invalids(unsigned long long min, unsigned long 
     for(unsigned long long i = min; i <= max; i++){
         string numberS = to_string(i);
         bool isInvalid = true;
+        
+        int length = numberS.length();
+        int division = 2;
+        bool alreadyChecked = false;
+        while(division <= length && !alreadyChecked){
+            if(length%division == 0){ //multiple
+                int split = length/division; 
+                for(int i = 0; i < length-split; i += split){
+                    string part = numberS.substr(i,split);
+                    string nextPart = numberS.substr(i+split,split);
+                    if(part != nextPart){
+                        isInvalid = false;
+                        break;
+                    }
+                }
+                if(isInvalid){
+                    invalids += i;
+                    alreadyChecked = true;
+                }
+            }
+            division++;
+            isInvalid = true;
+        }
+        
+        /*
         int indice = 1;
         size_t pos = numberS.find(numberS[0],1);
         while(indice < numberS.length()){
@@ -78,12 +103,8 @@ unsigned long long find_sequence_invalids(unsigned long long min, unsigned long 
                 isInvalid = false;
             }
         }
-        
+        */
 
-        if (isInvalid){
-            invalids = invalids + i;
-            cout << "invalid sequence: " << i << endl;
-        }
     }
     return invalids;
 }
@@ -91,7 +112,7 @@ unsigned long long find_sequence_invalids(unsigned long long min, unsigned long 
 void part2(){
     unsigned long long totalInvalids = 0;
     fstream file;
-    file.open("datas/2025_day2_exemple");
+    file.open("datas/2025_day2_data");
     string line;
     getline(file,line);
     stringstream ss(line);
@@ -105,12 +126,10 @@ void part2(){
         string minS,maxS;
         getline(ss0,minS,'-');
         getline(ss0,maxS);
-        cout << minS << " " << maxS << endl;
         unsigned long long min = stoull(minS);
         unsigned long long max = stoull(maxS);
-        cout << "Range: " << min << " to " << max << endl;
-        unsigned long long doubles = find_sequence_twice(min,max);
-        totalInvalids = totalInvalids + doubles;
+        unsigned long long invalids = find_sequence_invalids(min,max);
+        totalInvalids = totalInvalids + invalids;
     }
     cout << "Part 2: " << totalInvalids << endl;
 }
