@@ -87,24 +87,6 @@ unsigned long long find_sequence_invalids(unsigned long long min, unsigned long 
             division++;
             isInvalid = true;
         }
-        
-        /*
-        int indice = 1;
-        size_t pos = numberS.find(numberS[0],1);
-        while(indice < numberS.length()){
-            while(pos != string::npos){
-                pos = numberS.find(numberS[indice],indice+1);
-                indice ++;
-            }
-            if(numberS[indice] = numberS[0]){
-                continue;
-            }
-            else{
-                isInvalid = false;
-            }
-        }
-        */
-
     }
     return invalids;
 }
