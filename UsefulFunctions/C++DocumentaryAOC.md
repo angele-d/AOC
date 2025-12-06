@@ -15,6 +15,7 @@ using namespace std;
     - [Separate](#separate)
     - [Search element](#search-element)
     - [Skip the beginning](#skip-the-beginning)
+    - [Length](#length)
   - [Vector](#vector)
     - [Order](#order)
     - [End of vector](#end-of-vector)
@@ -25,11 +26,18 @@ using namespace std;
   - [Queue](#queue)
 - [II. Utilities](#ii-utilities)
   - [Search in files](#search-in-files)
+    - [Check if the next is EOF](#check-if-the-next-is-eof)
   - [String/Char to integer](#stringchar-to-integer)
     - [string To int](#string-to-int)
     - [string To unsigned long long](#string-to-unsigned-long-long)
+    - [string To char](#string-to-char)
     - [char To integer](#char-to-integer)
 - [III. Math tools](#iii-math-tools)
+  - [Pow](#pow)
+- [IV. Prepared Functions](#iv-prepared-functions)
+  - [On string](#on-string)
+    - [containsOnlySpaces](#containsonlyspaces)
+    - [removeSpaces](#removespaces)
 
 ---
 ---
@@ -69,7 +77,7 @@ element = line.substr(i,nbOfElt) //keep element from i to i+nbOfElt
 ```
 
 
-### Length
+### Length
 
 ```c++
 size_t length = line.length();
@@ -180,6 +188,12 @@ while (getline(file,line)){
 }
 ```
 
+### Check if the next is EOF
+
+```c++
+bool isLastLine = (file.peek() == EOF);
+```
+
 ---
 ## String/Char to integer
 
@@ -193,6 +207,12 @@ int elementInt = stoi(elementString); //Gives a error number if it's not possibl
 
 ```c++
 unsigned long long elementInt = stoull(elementString);
+```
+
+### string To char
+
+```c++
+char c = str[0];
 ```
 
 ### char To integer
@@ -209,6 +229,44 @@ int number = character - '0';
 
 With \<cmath>
 
+## Pow
+
 ```c++
 pow(2,%upper%); //2**upper
+```
+
+---
+---
+
+# IV. Prepared Functions
+
+## On string
+
+### containsOnlySpaces
+
+Check if a `string` contains only `' '` 
+
+```c++
+bool containsOnlySpaces(string& s) {
+    for (char c : s) {
+        if (c != ' ') return false;
+    }
+    return true;
+}
+```
+
+### removeSpaces
+
+Remove all spaces from a `string` element
+
+```c++
+string removeSpaces(string& s) {
+    string result;
+    for (char c : s) {
+        if (c != ' ') {
+            result += c;
+        }
+    }
+    return result;
+}
 ```
