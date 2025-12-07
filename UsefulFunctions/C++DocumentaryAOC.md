@@ -19,6 +19,7 @@ using namespace std;
   - [Vector](#vector)
     - [Order](#order)
     - [End of vector](#end-of-vector)
+    - [Vector of -1 numbers](#vector-of--1-numbers)
   - [Array](#array)
     - [Put each element in different variables](#put-each-element-in-different-variables)
   - [Pair](#pair)
@@ -34,7 +35,10 @@ using namespace std;
     - [char To integer](#char-to-integer)
 - [III. Math tools](#iii-math-tools)
   - [Pow](#pow)
-- [IV. Prepared Functions](#iv-prepared-functions)
+- [IV. Optimization](#iv-optimization)
+  - [Memoization](#memoization)
+    - [(i,j) exploration](#ij-exploration)
+- [V. Prepared Functions](#v-prepared-functions)
   - [On string](#on-string)
     - [containsOnlySpaces](#containsonlyspaces)
     - [removeSpaces](#removespaces)
@@ -111,6 +115,12 @@ sort(ranges.begin(),ranges.end()); //ASC from ranges.begin()
 
 ```c++
 auto last = elements.back();
+```
+
+### Vector of -1 numbers
+
+```c++
+vector<vector<unsigned long long>> memo($lineSize$, vector<unsigned long long>($ColumnSize$, -1));
 ```
 
 ---
@@ -238,7 +248,30 @@ pow(2,%upper%); //2**upper
 ---
 ---
 
-# IV. Prepared Functions
+# IV. Optimization
+
+## Memoization
+
+### (i,j) exploration
+
+Use a `vector<vector<unsigned long long>>` initialized at `-1`
+
+```c++
+vector<vector<unsigned long long>> memo(%lineSize%, vector<unsigned long long>(%columnSize%, -1));
+```
+
+In the **recursive** function, add as parameter the *memo* with `&` to modify *memo* in all iterations
+
+```c++
+unsigned long long goDown(%parameters%, vector<vector<unsigned long long>> &memo){
+  %...%
+}
+```
+
+---
+---
+
+# V. Prepared Functions
 
 ## On string
 
