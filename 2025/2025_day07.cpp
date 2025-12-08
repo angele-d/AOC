@@ -17,7 +17,7 @@ int findS(vector<string> lines){
 
 void part1(){
     fstream file;
-    file.open("datas/2025_day7_data");
+    file.open("datas/2025_day07_data");
     string line;
     vector<string> lines;
     while(getline(file,line)){
@@ -79,7 +79,7 @@ unsigned long long goDown(vector<string> lines, int i, int j, vector<vector<unsi
 
 void part2(){
     fstream file;
-    file.open("datas/2025_day7_data");
+    file.open("datas/2025_day07_data");
     string line;
     vector<string> lines;
     while(getline(file,line)){

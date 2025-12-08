@@ -9,7 +9,7 @@ using namespace std;
 
 void part1(){
     fstream file;
-    file.open("datas/2025_day5_data");
+    file.open("datas/2025_day05_data");
     string line;
     bool availablePart = false;
     long long freshcount = 0;
@@ -43,7 +43,7 @@ void part1(){
 
 void part2(){
     fstream file;
-    file.open("datas/2025_day5_data");
+    file.open("datas/2025_day05_data");
     string line;
     bool availablePart = false;
     long long freshcount = 0;

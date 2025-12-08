@@ -36,7 +36,7 @@ int rollsAround(vector<string> input, int i, int j){
 
 void part1(){
     fstream file;
-    file.open("datas/2025_day4_data");
+    file.open("datas/2025_day04_data");
     if (!file.is_open()){
         cout << "Error opening file" << endl;
         return;
@@ -62,7 +62,7 @@ void part1(){
 
 void part2(){
     fstream file;
-    file.open("datas/2025_day4_data");
+    file.open("datas/2025_day04_data");
     if (!file.is_open()){
         cout << "Error opening file" << endl;
         return;

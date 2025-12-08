@@ -27,7 +27,7 @@ string removeSpaces(string& s) {
 void part1(){
     unsigned long long result = 0;
     fstream file;
-    file.open("datas/2025_day6_data");
+    file.open("datas/2025_day06_data");
     string line;
     vector<vector<int>> numbers;
     vector<string> operators;
@@ -84,7 +84,7 @@ void part1(){
 void part2(){
     unsigned long long result = 0;
     fstream file;
-    file.open("datas/2025_day6_data");
+    file.open("datas/2025_day06_data");
     string line;
     vector<string> lines;
     while(getline(file,line)){

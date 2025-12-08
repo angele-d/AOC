@@ -41,7 +41,7 @@ struct Edge {
 };
 
 void part1() {
-    fstream file("datas/2025_day8_data");
+    fstream file("datas/2025_day08_data");
     string line;
     vector<vector<int>> grid;
     while(getline(file, line)){
@@ -105,7 +105,7 @@ void part1() {
 }
 
 void part2() {
-    fstream file("datas/2025_day8_data");
+    fstream file("datas/2025_day08_data");
     string line;
     vector<vector<int>> grid;
     while(getline(file, line)){

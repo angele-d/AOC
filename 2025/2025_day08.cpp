@@ -15,7 +15,7 @@ double straightLineDistance(vector<int> pointA, vector<int> pointB){
 
 void part1(){
     fstream file;
-    file.open("datas/2025_day8_data");
+    file.open("datas/2025_day08_data");
     string line;
     vector<vector<int>> grid;
     while(getline(file,line)){

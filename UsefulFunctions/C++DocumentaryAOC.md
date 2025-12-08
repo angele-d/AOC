@@ -38,10 +38,15 @@ using namespace std;
 - [IV. Optimization](#iv-optimization)
   - [Memoization](#memoization)
     - [(i,j) exploration](#ij-exploration)
-- [V. Prepared Functions](#v-prepared-functions)
+- [V. Prepared Structure](#v-prepared-structure)
+  - [Union-find](#union-find)
+  - [Edges: with distance between 2 edges](#edges-with-distance-between-2-edges)
+- [VI. Prepared Functions](#vi-prepared-functions)
   - [On string](#on-string)
     - [containsOnlySpaces](#containsonlyspaces)
     - [removeSpaces](#removespaces)
+  - [On int-\>double](#on-int-double)
+    - [straightLineDistance *Distance euclidienne*](#straightlinedistance-distance-euclidienne)
 
 ---
 ---
@@ -109,6 +114,10 @@ With \<algorithm>
 
 ```c++
 sort(ranges.begin(),ranges.end()); //ASC from ranges.begin()
+```
+
+```c++
+sort(edges.begin(), edges.end(), []( Edge a, Edge b){return a.dist < b.dist;}); //According to the dist of 2 edges
 ```
 
 ### End of vector
@@ -268,10 +277,55 @@ unsigned long long goDown(%parameters%, vector<vector<unsigned long long>> &memo
 }
 ```
 
+*See 2025_day07.cpp*
+
 ---
 ---
 
-# V. Prepared Functions
+# V. Prepared Structure
+
+## Union-find
+
+```c++
+struct UnionFind {
+    vector<int> parent;
+    vector<int> size;
+    UnionFind(int n) : parent(n), size(n, 1) {
+        for(int i = 0; i < n; i++) parent[i] = i;
+    }
+    int find(int x) {
+        if(parent[x] != x) parent[x] = find(parent[x]);
+        return parent[x];
+    }
+    bool unite(int a, int b) {
+        a = find(a);
+        b = find(b);
+        if(a == b) return false;
+        if(size[a] < size[b]) swap(a,b);
+        parent[b] = a;
+        size[a] += size[b];
+        return true;
+    }
+};
+```
+*See 2025_day08_optimized.cpp*
+
+## Edges: with distance between 2 edges
+
+u,v = index *(for example: index in a vector\<vector\<int>> grid)*
+
+```c++
+struct Edge {
+    int u, v;
+    double dist;
+};
+```
+*See 2025_day08_optimized.cpp*
+
+---
+---
+
+# VI. Prepared Functions
 
 ## On string
 
@@ -303,3 +357,15 @@ string removeSpaces(string& s) {
     return result;
 }
 ```
+
+## On int->double
+
+### straightLineDistance *Distance euclidienne*
+
+```c++
+double straightLineDistance(vector<int> a, vector<int> b) {
+    double sum = pow((a[0] - b[0]), 2) + pow((a[1] - b[1]), 2) + pow((a[2] - b[2]), 2);
+    return sqrt(sum);
+}
+```
+

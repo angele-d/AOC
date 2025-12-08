@@ -6,7 +6,7 @@ using namespace std;
 
 void part1(){
     fstream file;
-    file.open("datas/2025_day3_data");
+    file.open("datas/2025_day03_data");
     string line;
     int totalJoltage = 0;
     while(getline(file,line)){
@@ -42,7 +42,7 @@ pair<char,size_t> nextPos(string line, int start, int digitRemaining){
 
 void part2(){
     fstream file;
-    file.open("datas/2025_day3_data");
+    file.open("datas/2025_day03_data");
     string line;
     unsigned long long totalJoltage = 0;
     while(getline(file,line)){

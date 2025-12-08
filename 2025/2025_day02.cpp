@@ -37,7 +37,7 @@ unsigned long long find_sequence_twice(unsigned long min, unsigned long long max
 void part1(){    
     unsigned long long totalDoubles = 0;
     fstream file;
-    file.open("datas/2025_day2_data");
+    file.open("datas/2025_day02_data");
     string line;
     getline(file,line);
     stringstream ss(line);
@@ -94,7 +94,7 @@ unsigned long long find_sequence_invalids(unsigned long long min, unsigned long 
 void part2(){
     unsigned long long totalInvalids = 0;
     fstream file;
-    file.open("datas/2025_day2_data");
+    file.open("datas/2025_day02_data");
     string line;
     getline(file,line);
     stringstream ss(line);
