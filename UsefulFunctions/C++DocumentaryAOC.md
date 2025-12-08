@@ -35,6 +35,7 @@ using namespace std;
     - [char To integer](#char-to-integer)
 - [III. Math tools](#iii-math-tools)
   - [Pow](#pow)
+  - [sqrt](#sqrt)
 - [IV. Optimization](#iv-optimization)
   - [Memoization](#memoization)
     - [(i,j) exploration](#ij-exploration)
@@ -252,6 +253,12 @@ With \<cmath>
 
 ```c++
 pow(2,%upper%); //2**upper
+```
+
+## sqrt
+
+```c++
+sqrt(sum); //float, double, long double
 ```
 
 ---
