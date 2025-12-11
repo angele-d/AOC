@@ -25,6 +25,8 @@ using namespace std;
   - [Pair](#pair)
     - [Put each element in different variables](#put-each-element-in-different-variables-1)
   - [Queue](#queue)
+  - [Map](#map)
+  - [unordered\_map](#unordered_map)
 - [II. Utilities](#ii-utilities)
   - [Search in files](#search-in-files)
     - [Check if the next is EOF](#check-if-the-next-is-eof)
@@ -39,9 +41,11 @@ using namespace std;
 - [IV. Optimization](#iv-optimization)
   - [Memoization](#memoization)
     - [(i,j) exploration](#ij-exploration)
+    - [infos in DFS](#infos-in-dfs)
 - [V. Prepared Structure](#v-prepared-structure)
   - [Union-find](#union-find)
   - [Edges: with distance between 2 edges](#edges-with-distance-between-2-edges)
+  - [Point](#point)
 - [VI. Prepared Functions](#vi-prepared-functions)
   - [On string](#on-string)
     - [containsOnlySpaces](#containsonlyspaces)
@@ -185,7 +189,57 @@ int element = file.front();
 //Drop an element
 file.pop()
 ```
- 
+
+--- 
+## Map
+
+With \<map>
+
+Init: 
+```c++
+map<tuple<string, bool, bool>, long long> memo;
+```
+
+Search in:
+```c++
+memo.count({target, hasDAC, hasFFT})
+```
+
+Add:
+```c++
+memo[{target, hasDAC, hasFFT}] = paths;
+```
+
+*See 2025_day11_optimized.cpp*
+
+---
+## unordered_map
+
+With \<unordered_map>
+
+Init:
+```c++
+unordered_map<string, vector<string>> devices;
+```
+
+Search in:
+```c++
+if(devices.count(target)){
+    for(auto& t : devices[target]){
+        %...%
+    }
+}
+```
+
+Add:
+```c++
+devices[token] = %vector<string>%;
+
+devices[token].push_back(%string%);
+```
+
+*See 2025_day11_optimized.cpp*
+
 ---
 ---
 # II. Utilities
@@ -286,6 +340,16 @@ unsigned long long goDown(%parameters%, vector<vector<unsigned long long>> &memo
 
 *See 2025_day07.cpp*
 
+### infos in DFS
+
+```c++
+map<tuple<string, bool, bool>, long long> memo;
+```
+
+In the **recursive** function, add as parameter the *memo* with `&` to modify *memo* in all iterations
+
+*See 2025_day11_optimized.cpp*
+
 ---
 ---
 
@@ -328,6 +392,31 @@ struct Edge {
 };
 ```
 *See 2025_day08_optimized.cpp*
+
+---
+## Point
+
+u,v = index of the Point
+
+**PointHash:** Hash function to optimize the code
+
+```c++
+struct Point {
+    int u, v;
+
+    bool operator==(const Point& other) const {
+        return u == other.u && v == other.v;
+    }
+};
+
+struct PointHash {
+    size_t operator()(const Point& p) const noexcept {
+        return ((size_t)p.u << 32) ^ (size_t)p.v;
+    }
+};
+```
+
+*See 2025_day09.cpp*
 
 ---
 ---
