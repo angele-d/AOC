@@ -1,5 +1,5 @@
 
-FILE = "2025_day11_optimized"
+FILE = "2025_day12"
 
 all: compil
 
