@@ -26,7 +26,6 @@ int findFewestPresses(const vector<vector<int>>& wiringSchematics, const vector<
     int numLights = lightsObjective.size();
     int numButtons = wiringSchematics.size();
     
-    // BFS approach with state = current lights configuration
     queue<pair<vector<bool>, int>> q; // (state, num_presses)
     unordered_map<vector<bool>, int, VectorBoolHash> visited; // state -> min presses to reach it
     
@@ -38,21 +37,17 @@ int findFewestPresses(const vector<vector<int>>& wiringSchematics, const vector<
         auto [currentState, presses] = q.front();
         q.pop();
         
-        // Check if we reached the goal
         if (currentState == lightsObjective) {
             return presses;
         }
         
-        // Try pressing each button
         for (int button = 0; button < numButtons; ++button) {
             vector<bool> newState = currentState;
             
-            // Toggle the lights affected by this button
             for (int lightIndex : wiringSchematics[button]) {
                 newState[lightIndex] = !newState[lightIndex];
             }
             
-            // Only explore if we haven't seen this state or found a shorter path
             if (visited.find(newState) == visited.end() || visited[newState] > presses + 1) {
                 visited[newState] = presses + 1;
                 q.push({newState, presses + 1});
@@ -60,7 +55,7 @@ int findFewestPresses(const vector<vector<int>>& wiringSchematics, const vector<
         }
     }
     
-    return -1; // No solution found
+    return -1;
 }
 
 void part1() {
@@ -114,5 +109,6 @@ void part1() {
 
 int main(){
     part1();
+    cout << "Part 2: Let's see 2025_day10_part2.py" << endl;
     return 0;
 }

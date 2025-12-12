@@ -115,17 +115,6 @@ void part2(){
     }
 
     int paths = 0;
-    /*
-    find_if(devices.begin(), devices.end(), [&](Device& d){
-        if(d.current == "svr"){
-            for(auto& target : d.targets){
-                paths += explore(devices, target);
-            }
-            return true;
-        }
-        return false;
-    });
-    */
 
     queue<pair<string, pair<bool, bool>>> queue; 
     find_if(devices.begin(), devices.end(), [&](Device& d){

@@ -5,7 +5,7 @@
 using namespace std;
 ```
 
->[!NOTE] Information
+>[!NOTE] Information  
 > `%...%` means "Insert a correct value here"
 
 <h2> Summary </h2>
@@ -45,7 +45,9 @@ using namespace std;
 - [V. Prepared Structure](#v-prepared-structure)
   - [Union-find](#union-find)
   - [Edges: with distance between 2 edges](#edges-with-distance-between-2-edges)
-  - [Point](#point)
+  - [Point (+PointHash)](#point-pointhash)
+  - [Hash Structures](#hash-structures)
+    - [vector\<bool\>](#vectorbool)
 - [VI. Prepared Functions](#vi-prepared-functions)
   - [On string](#on-string)
     - [containsOnlySpaces](#containsonlyspaces)
@@ -394,7 +396,7 @@ struct Edge {
 *See 2025_day08_optimized.cpp*
 
 ---
-## Point
+## Point (+PointHash)
 
 u,v = index of the Point
 
@@ -417,6 +419,30 @@ struct PointHash {
 ```
 
 *See 2025_day09.cpp*
+
+---
+## Hash Structures
+
+>[!NOTE] Already implemented Hash  
+> For usual types *(such as int)*, the hash is already implemented when using `unordered_map`  
+
+### vector\<bool>
+
+```c++
+struct VectorBoolHash {
+    size_t operator()(const vector<bool>& v) const {
+        size_t hash = 0;
+        for (size_t i = 0; i < v.size(); ++i) {
+            if (v[i]) {
+                hash ^= (1ULL << (i % 64));
+            }
+        }
+        return hash;
+    }
+};
+```
+
+*See 2025_day10_part1_optimized.cpp*
 
 ---
 ---

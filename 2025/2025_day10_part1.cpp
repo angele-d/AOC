@@ -13,9 +13,7 @@ struct Press{
 };
 
 Press pressButtons(const vector<vector<int>> wiringSchematics, Press currentPos, const vector<bool> lightsObjective, vector<Press> &memo, Press bestPos = {{},{}}){
-    //cout << "#New#" << endl;
     if(currentPos.schematicsPressed.size() > wiringSchematics.size()){
-        //cout << "#1#" << endl;
         return currentPos;
     }
     if(currentPos.schematicsPressed.size() >= bestPos.schematicsPressed.size() && bestPos.schematicsPressed.size() > 0){
@@ -25,11 +23,6 @@ Press pressButtons(const vector<vector<int>> wiringSchematics, Press currentPos,
         Press &p = *it;
         if(p.lightsState == currentPos.lightsState){
             if (p.schematicsPressed.size() <= currentPos.schematicsPressed.size()){
-                /*cout << "#2# "; 
-                for(int schem : p.schematicsPressed){
-                    cout << schem << " ";
-                }
-                cout << endl;*/
                 return p;
             }
             else{
@@ -44,7 +37,6 @@ Press pressButtons(const vector<vector<int>> wiringSchematics, Press currentPos,
         return currentPos;
     }
     for(int i = 0 ; i < wiringSchematics.size(); i++){
-        //cout << "#5#:" << i << endl;
         if(currentPos.schematicsPressed.size() > 0 && i == currentPos.schematicsPressed.back()){
             continue;
         }
@@ -63,17 +55,7 @@ Press pressButtons(const vector<vector<int>> wiringSchematics, Press currentPos,
             bestPos = newPos;
         }
     }
-    //cout << "#6#" << endl;
     return bestPos;
-}
-
-void printVector(const std::vector<std::vector<int>>& v) {
-    for (const auto& row : v) {
-        for (int x : row) {
-            std::cout << x << " ";
-        }
-        std::cout << "\n";
-    }
 }
 
 void part1(){
@@ -124,7 +106,6 @@ void part1(){
         for(int schem : fewestPress.schematicsPressed){
             cout << schem << " ";
         }
-        cout << "Size: " << fewestPress.schematicsPressed.size() << endl;
         totalPressed += fewestPress.schematicsPressed.size();
     }
     cout << "Part 1: " << totalPressed << endl;
@@ -132,5 +113,6 @@ void part1(){
 
 int main(){
     part1();
+    cout << "Part 2: Let's see 2025_day10_part2.py" << endl;
     return 0;
 }

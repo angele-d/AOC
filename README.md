@@ -9,7 +9,7 @@ This repository contains my solutions for Advent of Code challenges. Each folder
 - [How to Use](#how-to-use)
 - [Contributing](#contributing)
 
-
+---
 ## Structure
 
 Each directory is organized by year.
@@ -20,13 +20,14 @@ For each year, you will find:
   - Examples I used to test my code : `<year>_day<nb>_exemple` and optionally the example number
   - Data files to complete the day : `<year>_day_<nb>_data`
 
+---
 ## Programming languages
 
-| 2023 | 2024 | 2025 |
-| --- | --- | --- |
-| Python <br> C++ | Python | C++ |
+| 2015 | 2023 | 2024 | 2025 |
+| --- | --- | --- | --- |
+| C++ | Python <br> C++ | Python | C++ <br> Python for day10part2 |
 
-
+---
 ## How to Use
 1. Clone the repository:
     - with HTTPS: 
@@ -41,6 +42,7 @@ For each year, you will find:
 3. Find the file corresponding to your day of interest (`<year>_day<nb>*`)
 4. Run the solution according to the language instructions.
 
+---
 ## Contributing
 Feel free to fork the repository and submit pull requests for improvements or additional solutions.
 
